@@ -7,7 +7,7 @@ case class RollingSceneCoverage(displayWindow: DisplayWindow, coverage: Int = 75
         ((coverage / 100.0) * displayWindow.h).toInt
 
     def horizontalBarCount: Int = {
-        ((displayWindow.w.toDouble) / OneVerticalBarFactory.BAR_WIDTH).toInt
+        ((displayWindow.w.toDouble) / ColumnFactory.COL_WIDTH).toInt
     }
 
     def firstBar: Point = {

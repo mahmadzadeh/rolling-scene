@@ -51,7 +51,7 @@ class RollingSceneCoverageTest extends FunSuite {
     test("given a screen 100 px wide then barCount returns the number of bars that can fit on screen") {
         val w = 117
 
-        val expected = ((w.toDouble)/OneVerticalBarFactory.BAR_WIDTH).toInt
+        val expected = ((w.toDouble)/ColumnFactory.COL_WIDTH).toInt
 
         assertResult(expected ){
             RollingSceneCoverage(DisplayWindow(w,100)).horizontalBarCount
