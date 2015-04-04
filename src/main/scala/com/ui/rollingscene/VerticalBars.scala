@@ -1,4 +1,4 @@
-package com.ui.gameelement.rollingscene
+package com.ui.rollingscene
 
 import scala.collection.immutable.Queue
 import java.awt.{Point, Graphics}
@@ -7,12 +7,16 @@ case class VerticalBars(bars: Queue[VerticalBar] = Queue.empty,
                         sceneCoverage: RollingSceneCoverage,
                         velocity: Velocity = VerticalBarVelocity()) {
 
+    /**
+     * adds enough bars to fill the screen on the left side of the screen
+     * @return
+     */
     def add: VerticalBars =
         if (!bars.isEmpty){
             VerticalBars(bars.enqueue(createBarsRequired), sceneCoverage,velocity).removeOffScreen
         } else {
             val veryFirstBar = OneVerticalBarFactory.create(sceneCoverage.firstBar, sceneCoverage)
-            VerticalBars(Queue.empty.enqueue(veryFirstBar), sceneCoverage,velocity)
+            VerticalBars(bars.enqueue(veryFirstBar), sceneCoverage,velocity)
         }
 
 

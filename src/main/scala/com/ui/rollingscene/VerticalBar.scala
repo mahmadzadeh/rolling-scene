@@ -1,4 +1,4 @@
-package com.ui.gameelement.rollingscene
+package com.ui.rollingscene
 
 import java.awt.{Graphics, Rectangle, Point}
 

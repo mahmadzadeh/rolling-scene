@@ -1,8 +1,7 @@
-package com.ui.gameelement.rollingscene
+package com.ui.rollingscene
 
 import org.scalatest.FunSuite
 import java.awt.Point
-import com.ui.gameelement.rollingscene.DisplayRectangle._
 
 class OneVerticalBarFactoryTest extends FunSuite {
 
@@ -26,8 +25,22 @@ class OneVerticalBarFactoryTest extends FunSuite {
         assert( 5 === OneVerticalBarFactory.verticalBarsRequiredForCoverage(RollingSceneCoverage(displayWindow, 10)))
     }
 
+    test("given a vertical bar factory when no element required to be added then call to horizontal bars required will return 0") {
+        assert( 0 === OneVerticalBarFactory.barsRequiredForCoverageHorizontally(new Point(101,0), sceneCoverage))
+    }
+
+    test("given a vertical bar factory when one element required to be added then call to horizontal bars required will return 1") {
+        val fromPoint = 98
+        assertResult((100-fromPoint)/OneVerticalBarFactory.BAR_WIDTH){
+            OneVerticalBarFactory.barsRequiredForCoverageHorizontally(new Point(fromPoint,0), sceneCoverage)
+        }
+    }
+
     test("given a vertical bar factory then call to horizontal bars required will return the count of bars required to cover screen horizontally from given point") {
-        assert( (100-50)/OneVerticalBarFactory.BAR_WIDTH === OneVerticalBarFactory.barsRequiredForCoverageHorizontally(new Point(50,0), sceneCoverage))
+        val fromPoint: Int = 50
+        assertResult( (100-fromPoint)/OneVerticalBarFactory.BAR_WIDTH ) {
+            OneVerticalBarFactory.barsRequiredForCoverageHorizontally(new Point(fromPoint,0), sceneCoverage)
+        }
     }
 
     test("given a vertical bar factory then call to createFillScreen will return enough bars on the right to fill the screen") {
@@ -37,10 +50,6 @@ class OneVerticalBarFactoryTest extends FunSuite {
         val bars     = OneVerticalBarFactory.createFillScreen(lastBar.topLeft, sceneCoverage)
 
         assert( expected === bars.size)
-
-        println(bars.collect {
-            case b => b.topLeft
-        })
     }
 
 

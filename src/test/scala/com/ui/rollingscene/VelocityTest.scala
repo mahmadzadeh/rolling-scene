@@ -1,7 +1,6 @@
-package com.ui.gameelement.rollingscene
+package com.ui.rollingscene
 
 import org.scalatest.FunSuite
-import java.awt.Point
 
 class VelocityTest extends FunSuite {
 

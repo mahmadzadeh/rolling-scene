@@ -1,6 +1,6 @@
-package com.ui.gameelement.rollingscene
+package com.ui.rollingscene
 
-import com.ui.gameelement.rollingscene.DisplayRectangle._
+import com.ui.rollingscene.DisplayRectangle._
 import java.awt.Point
 
 
@@ -35,7 +35,8 @@ object OneVerticalBarFactory {
 
     def barsRequiredForCoverageHorizontally(fromPoint:Point, sceneCoverage:RollingSceneCoverage):Int = {
         val uncovered= sceneCoverage.displayWindow.w - fromPoint.x         
-        (uncovered.toDouble / BAR_WIDTH).toInt
+
+        if(uncovered <= 0 ) 0 else (uncovered.toDouble / BAR_WIDTH).toInt
     }
 
     def verticalBarsRequiredForCoverage(sceneCoverage:RollingSceneCoverage):Int = {

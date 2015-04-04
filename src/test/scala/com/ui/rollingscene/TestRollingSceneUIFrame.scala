@@ -3,12 +3,7 @@ package com.ui.rollingscene
 import javax.swing.{JFrame, JPanel}
 import java.awt._
 import org.jdesktop.layout.GroupLayout
-import com.ui.gameelement.rollingscene._
 import scala.collection.immutable.Queue
-import com.ui.gameelement.rollingscene.VerticalBars
-import com.ui.gameelement.rollingscene.DisplayWindow
-import com.ui.gameelement.rollingscene.RollingScene
-import com.ui.gameelement.rollingscene.RollingSceneCoverage
 
 class TestRollingSceneUIFrame extends JFrame {
     setResizable(false)

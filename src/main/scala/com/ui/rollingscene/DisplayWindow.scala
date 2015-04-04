@@ -1,4 +1,4 @@
-package com.ui.gameelement.rollingscene
+package com.ui.rollingscene
 
 case class DisplayWindow(w: Int, h: Int) {
     require(w >= 0 && h >= 0)

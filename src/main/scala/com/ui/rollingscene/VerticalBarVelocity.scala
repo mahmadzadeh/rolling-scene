@@ -1,4 +1,4 @@
-package com.ui.gameelement.rollingscene
+package com.ui.rollingscene
 
 
 case class VerticalBarVelocity(velX:Int= -1, velY:Int = 0, deltaT:Int = 1) extends Velocity {

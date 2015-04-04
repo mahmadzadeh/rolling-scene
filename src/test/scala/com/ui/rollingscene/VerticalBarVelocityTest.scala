@@ -1,4 +1,4 @@
-package com.ui.gameelement.rollingscene
+package com.ui.rollingscene
 
 import org.scalatest.FunSuite
 
@@ -7,7 +7,7 @@ class VerticalBarVelocityTest extends FunSuite {
     test("given default velocity then x1() returns the new location on X axis based on given default velocity") {
         val vel = VerticalBarVelocity()
 
-        assert( 1 === vel.x1(0) )
+        assert( -1 === vel.x1(0) )
 
     }
 
