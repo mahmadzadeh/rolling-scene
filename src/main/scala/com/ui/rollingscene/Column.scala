@@ -18,6 +18,6 @@ case class Column(topLeft:Point, rectangles: Seq[DisplayRectangle]) {
     def move(rollingScene:RollingSceneCoverage, velocityCalc:Velocity):Column   = {
         val newLocation = new Point(velocityCalc.x1(topLeft.x), velocityCalc.y1(topLeft.y))
 
-        ColumnFactory.create(newLocation, rollingScene)
+        Column(newLocation, rectangles.map(_.moveTo(newLocation)))
     }
 }

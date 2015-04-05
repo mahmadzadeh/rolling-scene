@@ -1,4 +1,4 @@
-name := "space-invaders"
+name := "rolling-scene"
 
 version := "0.1-SNAPSHOT"
 

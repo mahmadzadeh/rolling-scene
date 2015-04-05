@@ -1,6 +1,6 @@
 package com.ui.rollingscene
 
-import java.awt.{Graphics, Color, Rectangle}
+import java.awt.{Point, Graphics, Color, Rectangle}
 
 object DisplayRectangle {
     val DEFAULT_ELEMENT_WIDTH  = 2
@@ -26,4 +26,6 @@ abstract class DisplayRectangle(
         g.setColor(color)
         g.drawRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
     }
+
+    def moveTo(loc:Point):DisplayRectangle
 }
