@@ -20,4 +20,11 @@ case class Column(topLeft:Point, rectangles: Seq[DisplayRectangle]) {
 
         Column(newLocation, rectangles.map(_.moveTo(newLocation)))
     }
+
+    override def toString:String = {
+        val colorsAndBox = rectangles.collect {
+            case rec => s"${rec.boundingBox} color${rec.color}"
+            }
+        s"TOP left: ${topLeft} blocks ${colorsAndBox.mkString("\n")}"
+    }
 }

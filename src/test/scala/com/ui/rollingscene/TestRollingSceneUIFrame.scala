@@ -57,7 +57,7 @@ class TestRollingSceneUIPanel extends JPanel  with Runnable{
         val display = DisplayWindow(getWidth, getHeight)
 
         if(rollingScene == null) {
-            val sceneCoverage = RollingSceneCoverage(display)
+            val sceneCoverage = RollingSceneCoverage(display,100)
             rollingScene = RollingScene ( Columns(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1))).refresh
         } else {
             rollingScene = rollingScene.refresh
