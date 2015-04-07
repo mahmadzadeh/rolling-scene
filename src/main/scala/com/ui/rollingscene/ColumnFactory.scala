@@ -9,29 +9,23 @@ object ColumnFactory {
     val COL_SINGLE_ELEMENT_HEIGHT = DEFAULT_ELEMENT_HEIGHT
 
     def create(topLeft: Point, coverage: RollingSceneCoverage): Column = {
-        val range = RollingRange.getRange(coverage.verticalPixelCountForCoverage)
 
-        if(range.isEmpty)
-            println(s"range is empty ....${RollingRange.i}")
+        val top = RollingRange.getNextRandomPoint(coverage.displayWindow)
 
         val rectangles = 0 until (colElementsRequiredForCoverage(coverage)) map {
             y =>
                 val yOffset: Int = DisplayRectangle.yOffset(topLeft.y, y)
 
-                if(yOffset <= range.min ) {
+                if(yOffset <= top ) {
                     WhiteDisplayRectangle(
-                        xOffset(topLeft.x, 0),
-                        yOffset, COL_WIDTH, COL_SINGLE_ELEMENT_HEIGHT)
-
-                } else if(yOffset > range.min && yOffset <= range.max) {
-                    BlueDisplayRectangle(
                         xOffset(topLeft.x, 0),
                         yOffset, COL_WIDTH, COL_SINGLE_ELEMENT_HEIGHT)
 
                 } else {
-                    WhiteDisplayRectangle(
+                    GreenDisplayRectangle(
                         xOffset(topLeft.x, 0),
                         yOffset, COL_WIDTH, COL_SINGLE_ELEMENT_HEIGHT)
+
                 }
         }
 

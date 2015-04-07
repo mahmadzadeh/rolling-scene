@@ -12,13 +12,14 @@ class RollingRangeTest extends FunSuite {
         val n = 100
 
         val vals = 0 to 360 map { i=>
-            RollingRange.getRange(sceneCov.verticalPixelCountForCoverage)
+            RollingRange.getNextRandomPoint
         }
 
         vals.foreach { range =>
-            println(s"min ${range.min} up to ${range.max}")
+            println(s"min ${range}")
         }
     }
+
 
 }
 

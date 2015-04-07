@@ -10,9 +10,9 @@ case class WhiteDisplayRectangle(x: Int, y: Int, width: Int, height: Int)
 
     def moveTo(loc:Point):WhiteDisplayRectangle = WhiteDisplayRectangle(x + ( loc.x - x) , y, width, height)
 }
-case class BlueDisplayRectangle(x: Int, y: Int, width: Int, height: Int)
+case class GreenDisplayRectangle(x: Int, y: Int, width: Int, height: Int)
     extends DisplayRectangle(x, y, width, height) {
-    override val color: Color =  BLUE
+    override val color: Color =  new Color (0, 128, 0)
 
-    def moveTo(loc:Point):BlueDisplayRectangle = BlueDisplayRectangle(x + ( loc.x - x) , y, width, height)
+    def moveTo(loc:Point):GreenDisplayRectangle = GreenDisplayRectangle(x + ( loc.x - x) , y, width, height)
 }
