@@ -1,53 +1,24 @@
 package com.ui.rollingscene
 
-import com.util.random.{RandomBoolean, RandomNumberGenerator}
-import java.util.Random
 
-object RollingRange{
-    private[this] val random = new RandomNumberGenerator()
-
-    private[this] var curr:Int = random.next(0.to(200))
-
-    def getNextRandomPoint(displayWindow:DisplayWindow):Int = {
-
-        var hilSlope = RandomHillSlopeChange.changeHillSlopeWithProbability
-
-        if(curr >= displayWindow.h)  hilSlope = PositiveSlope
-        else if(curr <= displayWindow.h/2 ) hilSlope = NegativeSlope
+object RollingRange {
+    private[this] var currMaxHeight:Option[Int] = None
 
 
-        curr = Math.abs(curr + (hilSlope.dir * hilSlope.addition))
+    def getNextRandomPoint(displayWindow: DisplayWindow): Int = {
 
-        curr
-    }
-}
+        val maxHillHeight: Int = displayWindow.h / 2
 
-sealed trait HillSlope {
-    private val rnd  = new Random()
-    val dir:Int
-    def oppositeSlope:HillSlope
-    def addition:Int = 1 + Math.abs(rnd.nextInt() % 2)
-}
-object PositiveSlope extends HillSlope {
-    val dir:Int = +1
-    override def oppositeSlope: HillSlope = NegativeSlope
-}
-object NegativeSlope extends HillSlope {
-    val dir:Int = -1
-    override def oppositeSlope: HillSlope = PositiveSlope
-}
+        currMaxHeight = currMaxHeight  match {
+            case Some(currValue) =>
+                var hilSlope = RandomHillSlopeChange.changeHillSlopeWithProbability
+                if (currValue >= displayWindow.h) hilSlope = PositiveSlope
+                else  if (currValue <= maxHillHeight) hilSlope = NegativeSlope
+                Some(Math.abs(currValue + (hilSlope.slope * hilSlope.randomHeightAddition)))
+            case None  => Some(displayWindow.h)
+        }
 
-object RandomHillSlopeChange {
-   private val rnd  = new Random()
-   private var currentHillSlope:HillSlope = if(rnd.nextBoolean()) NegativeSlope else PositiveSlope
-
-   def changeHillSlopeWithProbability: HillSlope = {
-       val shouldChange =  Math.abs(rnd.nextInt() % 10)
-       if(shouldChange > 8) {
-           currentHillSlope = currentHillSlope.oppositeSlope
-       }
-       currentHillSlope
-    }
+        currMaxHeight.get
+   }
 
 }
-
