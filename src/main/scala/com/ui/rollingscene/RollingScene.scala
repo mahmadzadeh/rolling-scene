@@ -3,7 +3,7 @@ package com.ui.rollingscene
 import java.awt.Graphics
 
 
-case class RollingScene(verticalBars: Columns) {
+case class RollingScene(verticalBars: Hills) {
 
     def refresh:RollingScene = {
         new RollingScene(verticalBars.move.add)

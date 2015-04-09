@@ -44,9 +44,8 @@ class TestRollingSceneUIPanel extends JPanel  with Runnable{
 
     private[this] var rollingScene: RollingScene= _
 
-
-    private val PREFERRED_WIDTH : Int = 300
-    private val PREFERRED_HEIGHT: Int = 200
+    private val PREFERRED_WIDTH : Int = 700
+    private val PREFERRED_HEIGHT: Int = 300
 
     setPanelAttributes
 
@@ -54,11 +53,12 @@ class TestRollingSceneUIPanel extends JPanel  with Runnable{
 
     override def paintComponent(g: Graphics): Unit = {
         super.paintComponent(g)
+
         val display = DisplayWindow(getWidth, getHeight)
 
         if(rollingScene == null) {
             val sceneCoverage = RollingSceneCoverage(display,100)
-            rollingScene = RollingScene ( Columns(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1))).refresh
+            rollingScene = RollingScene ( Hills(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1))).refresh
         } else {
             rollingScene = rollingScene.refresh
         }

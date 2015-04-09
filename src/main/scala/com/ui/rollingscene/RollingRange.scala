@@ -4,7 +4,6 @@ package com.ui.rollingscene
 object RollingRange {
     private[this] var currMaxHeight:Option[Int] = None
 
-
     def getNextRandomPoint(displayWindow: DisplayWindow): Int = {
 
         val maxHillHeight: Int = displayWindow.h / 2

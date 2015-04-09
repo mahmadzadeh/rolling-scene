@@ -12,14 +12,8 @@ class RollingRangeTest extends FunSuite {
         val n = 100
 
         val vals = 0 to 360 map { i=>
-            RollingRange.getNextRandomPoint
-        }
-
-        vals.foreach { range =>
-            println(s"min ${range}")
+            RollingRange.getNextRandomPoint(display)
         }
     }
-
-
 }
 

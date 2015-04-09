@@ -2,7 +2,7 @@ package com.ui.rollingscene
 
 import org.scalatest.FunSuite
 
-class ColumnVelocityTest extends FunSuite {
+class HillColumnVelocityTest extends FunSuite {
 
     test("given default velocity then x1() returns the new location on X axis based on given default velocity") {
         val vel = ColumnVelocity()
