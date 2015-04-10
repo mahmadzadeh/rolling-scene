@@ -9,6 +9,9 @@ case class RollingScene(verticalBars: Hills) {
         new RollingScene(verticalBars.move.add)
     }
 
-    def draw(g:Graphics):Unit = verticalBars.draw(g)
+    def draw(g:Graphics):Unit = {
+        Stars.shiningStars(verticalBars.sceneCoverage.displayWindow).foreach(_.draw(g))
+        verticalBars.draw(g)
+    }
 
 }

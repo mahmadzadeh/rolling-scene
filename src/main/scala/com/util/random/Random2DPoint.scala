@@ -2,10 +2,12 @@ package com.util.random
 
 import java.awt.Point
 
-class Random2DPoint(xRange:Range , yRange :Range,
-                    randomNumberGenerator:RandomNumberGenerator = new RandomNumberGenerator ) {
-    require(xRange !=null && yRange !=null )
+object Random2DPoint {
 
-    def nextPoint:Point =
-        new Point(randomNumberGenerator.next(xRange), randomNumberGenerator.next(yRange))
+    def nextPoint(xRange:Range , yRange :Range):Point = {
+        require(xRange !=null && yRange !=null )
+
+        new Point(RandomNumberGenerator.next(xRange), RandomNumberGenerator.next(yRange))
+
+    }
 }
