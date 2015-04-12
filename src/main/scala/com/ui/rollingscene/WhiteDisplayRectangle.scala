@@ -19,7 +19,11 @@ case class GreenDisplayRectangle(x: Int, y: Int, width: Int, height: Int)
 
 case class Star(location:Point) extends DisplayRectangle(location.x, location.y, 1, 1){
     val possibleStarColours =
-        List(WHITE, RED, YELLOW, BLUE, PINK)
+        List(WHITE,
+            new Color (255, 69, 0),
+            new Color (255, 215, 0),
+            new Color (0,191,255),
+            new Color (173,255,47))
 
     override def moveTo(loc: Point): DisplayRectangle = this
 

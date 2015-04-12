@@ -2,12 +2,12 @@ package com.util
 
 abstract class Timer {
 
-    val timerDelay:Long
+    val timerDelayInMillis:Long
     def lastInvocationTime:Long
     def setLastInvocationTime(t:Long):Unit
 
     def isTime(now:Long):Boolean  = {
-        if( now - lastInvocationTime >= timerDelay) {
+        if( now - lastInvocationTime >= timerDelayInMillis) {
             setLastInvocationTime(now)
             true
         }

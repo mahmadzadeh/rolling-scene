@@ -3,18 +3,29 @@ package com.ui.rollingscene
 import com.util.random.Random2DPoint
 
 object Stars {
-    val STAR_COUNT = 20
+    val STAR_COUNT = 100
+    val STAR_CLUSTER_COUNT = 3
 
-    private[this] var stars:Seq[Star] = Nil
-    private val shouldInitializeStars: Boolean = stars == Nil
+    private var starClusters:Seq[Seq[Star]]= Nil
 
     def shiningStars(display:DisplayWindow):Seq[Star] = {
         if(shouldInitializeStars)
-            stars = List.tabulate(STAR_COUNT ) { i:Int => createOneRandomStar(display)}
+            initializeStars(display)
 
-        scala.util.Random.shuffle(stars).take(STAR_COUNT/ 2)
+        if(StarClusterTimer.isTime(System.currentTimeMillis()))
+            starClusters = starClusters.tail :+ starClusters.head
+
+        starClusters.head
     }
 
+    private def initializeStars(display: DisplayWindow):Unit =
+        starClusters = List.tabulate(STAR_CLUSTER_COUNT) {
+            i: Int => List.tabulate(STAR_COUNT) {
+                k: Int => createOneRandomStar(display)
+            }
+        }
+
+    private def shouldInitializeStars: Boolean = starClusters == Nil
 
     private def createOneRandomStar(display:DisplayWindow):Star =
         Star(Random2DPoint.nextPoint(0 to display.w, 0 to display.h))

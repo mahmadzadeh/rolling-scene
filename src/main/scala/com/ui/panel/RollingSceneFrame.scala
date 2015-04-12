@@ -1,10 +1,9 @@
-package com.ui.rollingscene
+package com.ui.panel
 
-import javax.swing.{JFrame, JPanel}
-import java.awt._
+import javax.swing.JFrame
 import org.jdesktop.layout.GroupLayout
 
-class TestRollingSceneUIFrame extends JFrame {
+class RollingSceneFrame extends JFrame {
     setResizable(false)
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
@@ -13,13 +12,14 @@ class TestRollingSceneUIFrame extends JFrame {
     pack()
 
     private def initAllComponents: Unit = {
-        val panel = new TestRollingSceneUIPanel(new Chopper(new Point(10,10), ChopperVelocity(0,0)))
+
+
+        val panel = new RollingScenePanel()
 
         val layout: GroupLayout = new GroupLayout(getContentPane)
 
 
         getContentPane.setLayout(layout)
-
 
         layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                   .add(layout.createSequentialGroup.addContainerGap()
@@ -36,36 +36,5 @@ class TestRollingSceneUIFrame extends JFrame {
     }
 }
 
-class TestRollingSceneUIPanel (item:Chopper) extends JPanel {
-    private val PREFERRED_WIDTH : Int = 300
-    private val PREFERRED_HEIGHT: Int = 200
 
-    setPanelAttributes
-
-    repaint()
-
-    override def paintComponent(g: Graphics): Unit = {
-        super.paintComponent(g)
-        item.draw(g)
-    }
-
-    private def setPanelAttributes {
-        setDoubleBuffered(true)
-        setBackground(Color.BLACK)
-
-        val mainCanvasLayout = new org.jdesktop.layout.GroupLayout(this)
-        setLayout(mainCanvasLayout)
-
-        mainCanvasLayout
-        .setHorizontalGroup(mainCanvasLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(0, PREFERRED_WIDTH, java.lang.Short.MAX_VALUE))
-
-
-        mainCanvasLayout
-        .setVerticalGroup(mainCanvasLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                          .add(0, PREFERRED_HEIGHT, java.lang.Short.MAX_VALUE))
-
-        setFocusable(true)
-    }
-}
 
