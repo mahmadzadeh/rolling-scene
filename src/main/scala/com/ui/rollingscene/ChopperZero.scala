@@ -3,37 +3,71 @@ package com.ui.rollingscene
 import java.awt.{Rectangle, Graphics, Point}
 import java.awt.image.BufferedImage
 
-abstract class Chopper(topLeft: Point, velocity: Velocity) {
+abstract class Chopper(topLeft: Point, velocity: ChopperVelocity) {
     val image: BufferedImage
 
-    def move:Chopper
+    def move: Chopper
 
-    def draw(g: Graphics): Unit = g.drawImage(image,topLeft.x, topLeft.y, null )
+    def draw(g: Graphics): Unit = g.drawImage(image, topLeft.x, topLeft.y, null)
 
-    def boundingBox:Rectangle = new Rectangle(topLeft.x, topLeft.y, image.getWidth, image.getHeight)
+    def boundingBox: Rectangle  = new Rectangle(topLeft.x, topLeft.y, image.getWidth, image.getHeight)
 
-    def newLocation:Point =  {
+    def newLocation: Point =
         new Point(velocity.x1(topLeft.x), velocity.y1(topLeft.y))
+
+    def moveForward:Chopper
+
+    def moveUp:Chopper
+}
+
+class ChopperZero(topLeft: Point, velocity: ChopperVelocity) extends Chopper(topLeft, velocity) {
+    override val image = ImageCache.load("/cobra_0.jpg")
+                         .getOrElse(throw new RuntimeException("unable to load chopper image 0"))
+
+    override def move: Chopper = new ChopperOne(newLocation, velocity)
+
+    override def moveForward: Chopper =
+        new ChopperZero(new Point(velocity.x1(topLeft.x), velocity.y1(topLeft.y)),
+                        ChopperVelocity(velocity.vx+1, velocity.vy))
+
+    override def moveUp: Chopper = {
+        val vel = velocity.increaseInX
+        new ChopperZero(vel.move(topLeft),vel)
     }
 }
 
-class ChopperZero(topLeft: Point, velocity: Velocity) extends Chopper (topLeft: Point, velocity: Velocity){
-    override val image = ImageCache.load("/cobra_0.jpg").getOrElse(throw new RuntimeException("unable to load chopper image 0"))
-    override def move:Chopper    = new ChopperOne(newLocation, velocity)
+class ChopperOne(topLeft: Point, velocity: ChopperVelocity) extends Chopper(topLeft, velocity) {
+    override val image = ImageCache.load("/cobra_1.jpg")
+                         .getOrElse(throw new RuntimeException("unable to load chopper image 1"))
+
+    override def move: Chopper = new ChopperTwo(newLocation, velocity)
+
+    override def moveForward: Chopper = ???
+
+    override def moveUp: Chopper = {
+        val vel = velocity.increaseInX
+        new ChopperOne(vel.move(topLeft),vel)
+    }
 }
 
-class ChopperOne(topLeft: Point, velocity: Velocity) extends Chopper (topLeft: Point, velocity: Velocity){
-    override val image = ImageCache.load("/cobra_1.jpg").getOrElse(throw new RuntimeException("unable to load chopper image 1"))
-    override def move:Chopper    = new ChopperTwo(newLocation, velocity)
+class ChopperTwo(topLeft: Point, velocity: ChopperVelocity) extends Chopper(topLeft, velocity) {
+    override val image = ImageCache.load("/cobra_2.jpg")
+                         .getOrElse(throw new RuntimeException("unable to load chopper image 2"))
+
+    override def move: Chopper = new ChopperThree(newLocation, velocity)
+
+    override def moveForward: Chopper = ???
+
+    override def moveUp: Chopper = ???
 }
 
-class ChopperTwo(topLeft: Point, velocity: Velocity) extends Chopper (topLeft: Point, velocity: Velocity){
-    override val image = ImageCache.load("/cobra_2.jpg").getOrElse(throw new RuntimeException("unable to load chopper image 2"))
+class ChopperThree(topLeft: Point, velocity: ChopperVelocity) extends Chopper(topLeft, velocity) {
+    override val image = ImageCache.load("/cobra_3.jpg")
+                         .getOrElse(throw new RuntimeException("unable to load chopper image3"))
 
-    override def move:Chopper    = new ChopperThree(newLocation, velocity)
-}
+    override def move: Chopper = new ChopperZero(newLocation, velocity)
 
-class ChopperThree(topLeft: Point, velocity: Velocity) extends Chopper (topLeft: Point, velocity: Velocity){
-    override val image       = ImageCache.load("/cobra_3.jpg").getOrElse(throw new RuntimeException("unable to load chopper image3"))
-    override def move:Chopper    = new ChopperZero(newLocation, velocity)
+    override def moveForward: Chopper = ???
+
+    override def moveUp: Chopper = ???
 }

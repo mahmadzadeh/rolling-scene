@@ -8,7 +8,6 @@ class HillColumnVelocityTest extends FunSuite {
         val vel = ColumnVelocity()
 
         assert( -1 === vel.x1(0) )
-
     }
 
     test("given default velocity of +2 px/time_unit then x1() returns the new location on X axis based on given default velocity") {

@@ -9,10 +9,11 @@ import com.ui.rollingscene.RollingScene
 import com.ui.rollingscene.RollingSceneCoverage
 import com.ui.rollingscene.ChopperZero
 import scala.collection.immutable.Queue
+import java.awt.event.{KeyEvent, KeyAdapter, ActionEvent, ActionListener}
 
-class RollingScenePanel extends JPanel  with Runnable{
-    private[this] var animator: Thread = null
+class RollingScenePanel extends JPanel  with Runnable with ActionListener {
 
+    private[this] var animator: Thread = _
     private[this] var rollingScene: RollingScene= _
 
     private val PREFERRED_WIDTH : Int = 700
@@ -28,8 +29,10 @@ class RollingScenePanel extends JPanel  with Runnable{
         val display = DisplayWindow(getWidth, getHeight)
 
         if(rollingScene == null) {
+
             val sceneCoverage = RollingSceneCoverage(display,100)
-            rollingScene = RollingScene(Hills(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1)), new ChopperZero(new Point(75,100), ChopperVelocity(0,0))).refresh
+            rollingScene = RollingScene(Hills(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1)),
+                                        new ChopperZero(new Point(75,100), ChopperVelocity(0,0))).refresh
         } else {
             rollingScene = rollingScene.refresh
         }
@@ -48,7 +51,6 @@ class RollingScenePanel extends JPanel  with Runnable{
         .setHorizontalGroup(mainCanvasLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(0, PREFERRED_WIDTH, java.lang.Short.MAX_VALUE))
 
-
         mainCanvasLayout
         .setVerticalGroup(mainCanvasLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                           .add(0, PREFERRED_HEIGHT, java.lang.Short.MAX_VALUE))
@@ -63,7 +65,6 @@ class RollingScenePanel extends JPanel  with Runnable{
         var beforeTime = System.currentTimeMillis()
 
         do {
-
             repaint()
 
             sleep(beforeTime)
@@ -87,4 +88,24 @@ class RollingScenePanel extends JPanel  with Runnable{
         animator = new Thread(this)
         animator.start()
     }
+
+    override def actionPerformed(e: ActionEvent): Unit = {
+
+
+    }
+
+//    private class KeyBoardAdapter extends KeyAdapter {
+//        override def keyPressed(e:KeyEvent) {
+//            e.getKeyCode match {
+//                case KeyEvent.VK_SPACE =>
+//                    rollingScene.getPlayerPosition.map(spaceInvaderGame.shootSingleMissileFrom)
+//                case KeyEvent.VK_RIGHT =>
+//                    spaceInvaderGame.movePlayerRight(getWidth)
+//                case KeyEvent.VK_LEFT  =>
+//                    spaceInvaderGame.movePlayerLeft
+//                case _ => Unit
+//            }
+//        }
+//    }
+
 }

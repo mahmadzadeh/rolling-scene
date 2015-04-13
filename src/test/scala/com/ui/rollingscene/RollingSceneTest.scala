@@ -8,6 +8,7 @@ class RollingSceneTest extends FunSuite {
 
     val display = RollingSceneCoverage(DisplayWindow(200, 100))
     val chopper = new ChopperZero(new Point, ChopperVelocity(2,0))
+
     test("given a series of vertical bars then a rolling scene can be created") {
         val rollingScene = new RollingScene(Hills(Queue.empty, display), chopper)
     }
@@ -32,5 +33,4 @@ class RollingSceneTest extends FunSuite {
             .refresh.verticalBars.count > 0
         )
     }
-
 }

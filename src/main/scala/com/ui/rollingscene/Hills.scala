@@ -4,21 +4,20 @@ import scala.collection.immutable.Queue
 import java.awt.{Point, Graphics}
 
 case class Hills(colQueue: Queue[HillColumn] = Queue.empty,
-                        sceneCoverage: RollingSceneCoverage,
-                        velocity: Velocity = ColumnVelocity()) {
+                 sceneCoverage: RollingSceneCoverage,
+                 velocity: Velocity = ColumnVelocity()) {
 
     /**
      * adds enough bars to fill the screen on the left side of the screen
      * @return
      */
     def add: Hills =
-        if (!colQueue.isEmpty){
-            Hills(colQueue.enqueue(createRequiredColumns), sceneCoverage,velocity).removeOffScreen
+        if (!colQueue.isEmpty) {
+            Hills(colQueue.enqueue(createRequiredColumns), sceneCoverage, velocity).removeOffScreen
         } else {
             val veryFirstBar = ColumnFactory.create(sceneCoverage.firstBar, sceneCoverage)
-            Hills(colQueue.enqueue(veryFirstBar), sceneCoverage,velocity)
+            Hills(colQueue.enqueue(veryFirstBar), sceneCoverage, velocity)
         }
-
 
     def createRequiredColumns: List[HillColumn] =
         ColumnFactory.fillScreen(colQueue.last.nextColumnToRight, sceneCoverage).toList

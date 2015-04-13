@@ -13,11 +13,9 @@ class RollingSceneFrame extends JFrame {
 
     private def initAllComponents: Unit = {
 
-
         val panel = new RollingScenePanel()
 
         val layout: GroupLayout = new GroupLayout(getContentPane)
-
 
         getContentPane.setLayout(layout)
 
@@ -31,7 +29,6 @@ class RollingSceneFrame extends JFrame {
                                      .add(panel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
                 org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                      .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 0, java.lang.Short.MAX_VALUE)))
-
 
     }
 }
