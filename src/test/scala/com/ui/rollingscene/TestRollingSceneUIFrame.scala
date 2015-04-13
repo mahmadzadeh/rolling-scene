@@ -13,7 +13,7 @@ class TestRollingSceneUIFrame extends JFrame {
     pack()
 
     private def initAllComponents: Unit = {
-        val panel = new TestRollingSceneUIPanel(new Chopper(new Point(10,10), ChopperVelocity(0,0)))
+        val panel = new TestRollingSceneUIPanel(new ChopperZero(new Point(10,10), ChopperVelocity(0,0)))
 
         val layout: GroupLayout = new GroupLayout(getContentPane)
 
@@ -36,7 +36,7 @@ class TestRollingSceneUIFrame extends JFrame {
     }
 }
 
-class TestRollingSceneUIPanel (item:Chopper) extends JPanel {
+class TestRollingSceneUIPanel (item:ChopperZero) extends JPanel {
     private val PREFERRED_WIDTH : Int = 300
     private val PREFERRED_HEIGHT: Int = 200
 

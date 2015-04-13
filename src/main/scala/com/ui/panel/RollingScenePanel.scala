@@ -7,7 +7,7 @@ import com.ui.rollingscene.Hills
 import com.ui.rollingscene.DisplayWindow
 import com.ui.rollingscene.RollingScene
 import com.ui.rollingscene.RollingSceneCoverage
-import com.ui.rollingscene.Chopper
+import com.ui.rollingscene.ChopperZero
 import scala.collection.immutable.Queue
 
 class RollingScenePanel extends JPanel  with Runnable{
@@ -29,7 +29,7 @@ class RollingScenePanel extends JPanel  with Runnable{
 
         if(rollingScene == null) {
             val sceneCoverage = RollingSceneCoverage(display,100)
-            rollingScene = RollingScene(Hills(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1)), new Chopper(new Point(0,10), ChopperVelocity(2,0))).refresh
+            rollingScene = RollingScene(Hills(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1)), new ChopperZero(new Point(75,100), ChopperVelocity(0,0))).refresh
         } else {
             rollingScene = rollingScene.refresh
         }
