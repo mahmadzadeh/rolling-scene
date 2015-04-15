@@ -7,9 +7,8 @@ import com.ui.rollingscene.Hills
 import com.ui.rollingscene.DisplayWindow
 import com.ui.rollingscene.RollingScene
 import com.ui.rollingscene.RollingSceneCoverage
-import com.ui.rollingscene.ChopperZero
 import scala.collection.immutable.Queue
-import java.awt.event.{KeyEvent, KeyAdapter, ActionEvent, ActionListener}
+import java.awt.event.{ActionEvent, ActionListener}
 
 class RollingScenePanel extends JPanel  with Runnable with ActionListener {
 
@@ -18,6 +17,7 @@ class RollingScenePanel extends JPanel  with Runnable with ActionListener {
 
     private val PREFERRED_WIDTH : Int = 700
     private val PREFERRED_HEIGHT: Int = 300
+    private val chopperImages         = ChopperImages.imageList
 
     setPanelAttributes
 
@@ -32,7 +32,7 @@ class RollingScenePanel extends JPanel  with Runnable with ActionListener {
 
             val sceneCoverage = RollingSceneCoverage(display,100)
             rollingScene = RollingScene(Hills(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1)),
-                                        new ChopperZero(new Point(75,100), ChopperVelocity(0,0))).refresh
+                                        new Chopper(new Point(75,100), ChopperVelocity(0,0), chopperImages)).refresh
         } else {
             rollingScene = rollingScene.refresh
         }

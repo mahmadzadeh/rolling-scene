@@ -1,6 +1,5 @@
 package com.ui.rollingscene
 
-import java.awt.Point
 
 case class ChopperVelocity(velX: Int, velY: Int, deltaT: Int = 1) extends Velocity {
     override val dt: Int = deltaT

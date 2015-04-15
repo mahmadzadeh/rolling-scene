@@ -5,7 +5,6 @@ import scala.util.Try
 import javax.imageio.ImageIO
 
 object ImageCache {
-
     private[this] val cache = scala.collection.mutable.HashMap.empty[String, BufferedImage]
 
     def load(fileName: String): Option[BufferedImage] =
@@ -23,6 +22,13 @@ object ImageCache {
                 loadedImage.toOption
         }
 
+    def loadOrThrow(fileName: String): BufferedImage =
+        load(fileName).getOrElse(throw new MissingImageException(s"image ${fileName} is missing"))
+
     def cachedImageCount = cache.size
 
+    def bust: Unit = cache.clear()
+
 }
+
+class MissingImageException(msg:String) extends Exception(msg)
