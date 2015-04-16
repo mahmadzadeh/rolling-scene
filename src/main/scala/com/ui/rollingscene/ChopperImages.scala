@@ -3,14 +3,15 @@ package com.ui.rollingscene
 import java.awt.image.BufferedImage
 
 object ChopperImages {
+    val imageCache = new ImageCache
 
     def imageList:Seq[BufferedImage] = Seq(
-                                  ImageCache.loadOrThrow("/cobra_0.jpg"),
-                                  ImageCache.loadOrThrow("/cobra_1.jpg"),
-                                  ImageCache.loadOrThrow("/cobra_2.jpg"),
-                                  ImageCache.loadOrThrow("/cobra_3.jpg"))
+                                  imageCache.loadOrThrow("/cobra_0.jpg"),
+                                  imageCache.loadOrThrow("/cobra_1.jpg"),
+                                  imageCache.loadOrThrow("/cobra_2.jpg"),
+                                  imageCache.loadOrThrow("/cobra_3.jpg"))
 
     def possibleImageList:Seq[Option[BufferedImage]] =
-        Seq(ImageCache.load("/cobra_0.jpg"), ImageCache.load("/cobra_1.jpg"),
-            ImageCache.load("/cobra_2.jpg"), ImageCache.load("/cobra_3.jpg"))
+        Seq(imageCache.load("/cobra_0.jpg"), imageCache.load("/cobra_1.jpg"),
+            imageCache.load("/cobra_2.jpg"), imageCache.load("/cobra_3.jpg"))
 }

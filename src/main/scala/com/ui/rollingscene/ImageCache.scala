@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage
 import scala.util.Try
 import javax.imageio.ImageIO
 
-object ImageCache {
+class ImageCache {
     private[this] val cache = scala.collection.mutable.HashMap.empty[String, BufferedImage]
 
     def load(fileName: String): Option[BufferedImage] =

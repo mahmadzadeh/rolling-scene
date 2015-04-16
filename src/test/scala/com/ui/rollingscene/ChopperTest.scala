@@ -3,11 +3,12 @@ package com.ui.rollingscene
 import org.scalatest.FunSuite
 import java.awt.Point
 
-class ChopperTest extends ImageCacheDependantTest {
+class ChopperTest extends FunSuite  {
 
     val chopperVelocity = ChopperVelocity(1, 1)
     val point           = new Point
-    val images          = List(ImageCache.load("/cobra_0.jpg").get, ImageCache.load("/cobra_1.jpg").get)
+    val imageCache      = new ImageCache
+    val images          = List(imageCache.load("/cobra_0.jpg").get, imageCache.load("/cobra_1.jpg").get)
 
     test("given point and velocity then a chopper can be created") {
         val chpr = new Chopper(point, chopperVelocity, Nil)

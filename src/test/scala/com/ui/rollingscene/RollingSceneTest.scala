@@ -1,10 +1,10 @@
 package com.ui.rollingscene
 
-import org.scalatest.{BeforeAndAfterAll, FunSuite}
+import org.scalatest.FunSuite
 import scala.collection.immutable.Queue
 import java.awt.Point
 
-class RollingSceneTest extends ImageCacheDependantTest {
+class RollingSceneTest extends FunSuite {
 
     val display = RollingSceneCoverage(DisplayWindow(200, 100))
     val chopper = new Chopper(new Point, ChopperVelocity(2,0), ChopperImages.imageList)
