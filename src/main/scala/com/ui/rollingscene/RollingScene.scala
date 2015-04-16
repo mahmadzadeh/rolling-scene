@@ -15,6 +15,12 @@ case class RollingScene(hills: Hills, chopper:Chopper) {
         chopper.draw(g)
     }
 
-    def increaseSpeedInX:RollingScene = RollingScene(hills, chopper.increaseSpeedInX)
+    def increaseChopperSpeed:RollingScene = RollingScene(hills, chopper.moveForward)
+    
+    def decreaseChopperSpeed:RollingScene = RollingScene(hills, chopper.moveBackward)
+
+    def moveChopperDown:RollingScene = RollingScene(hills, chopper.moveDown)
+
+    def moveChopperUp:RollingScene = RollingScene(hills, chopper.moveUp)
 
 }

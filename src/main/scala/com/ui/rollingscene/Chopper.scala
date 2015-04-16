@@ -10,9 +10,13 @@ case class Chopper(topLeft:Point, velocity:Velocity, chopperImages: Seq[Buffered
     def move: Chopper =
         Chopper(newLocation, velocity, chopperImages.tail :+ chopperImages.head)
 
-    def increaseSpeedInX:Chopper = Chopper(topLeft, velocity.increaseInX, chopperImages)
+    def moveForward:Chopper = Chopper(topLeft, velocity.increaseInX, chopperImages)
 
-    def increaseSpeedInY:Chopper = Chopper(topLeft, velocity.increaseInY, chopperImages)
+    def moveBackward:Chopper = Chopper(topLeft, velocity.decreaseInX, chopperImages)
+
+    def moveDown:Chopper = Chopper(topLeft, velocity.increaseInY, chopperImages)
+
+    def moveUp:Chopper   = Chopper(topLeft, velocity.decreaseInY, chopperImages)
 
     def draw(g:Graphics):Unit = g.drawImage(chopperImages.head, topLeft.x, topLeft.y, null)
 

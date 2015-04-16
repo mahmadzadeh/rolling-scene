@@ -31,7 +31,7 @@ class ChopperTest extends FunSuite  {
 
     test("given a chopper then calling increaseSpeedInX will increase the chopper's speed in X axis") {
 
-        val fasterChopper = new Chopper(point, chopperVelocity, images).increaseSpeedInX
+        val fasterChopper = new Chopper(point, chopperVelocity, images).moveForward
 
         assert(chopperVelocity.velX + 1 === fasterChopper.velocity.velX)
 
@@ -39,7 +39,7 @@ class ChopperTest extends FunSuite  {
 
     test("given a chopper then calling increaseSpeedInY will increase the chopper's speed in Y axis") {
 
-        val fasterChopper = new Chopper(point, chopperVelocity, images).increaseSpeedInY
+        val fasterChopper = new Chopper(point, chopperVelocity, images).moveDown
 
         assert(chopperVelocity.velY + 1 === fasterChopper.velocity.velY)
     }

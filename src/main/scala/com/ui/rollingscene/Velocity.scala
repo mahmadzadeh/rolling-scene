@@ -11,9 +11,13 @@ case class Velocity(velX: Int, velY: Int, deltaT: Int = 1) {
 
     def move(point: Point) = new Point(x1(point.x), y1(point.y))
 
-    def increaseInX:Velocity = Velocity(velX+1, velY, deltaT)
+    def increaseInX:Velocity = Velocity(velX + 1, velY, deltaT)
+
+    def decreaseInX:Velocity = Velocity(velX - 1, velY, deltaT)
 
     def increaseInY:Velocity = Velocity(velX, velY + 1, deltaT)
+
+    def decreaseInY:Velocity = Velocity(velX, velY - 1, deltaT)
 
     private def calculateNewPosition(velocity:Int , initialPos:Int ) = (velocity * deltaT) + initialPos
 }

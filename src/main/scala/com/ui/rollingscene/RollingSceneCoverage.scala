@@ -3,6 +3,7 @@ package com.ui.rollingscene
 import java.awt.Point
 
 case class RollingSceneCoverage(displayWindow: DisplayWindow, coverage: Int = 75) {
+
     def verticalPixelCountForCoverage: Int =
         ((coverage / 100.0) * displayWindow.h).toInt
 
