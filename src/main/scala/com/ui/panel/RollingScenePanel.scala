@@ -15,8 +15,10 @@ class RollingScenePanel extends JPanel with Runnable {
     private[this] var animator    : Thread       = _
     private[this] var rollingScene: RollingScene = _
 
-    private val PREFERRED_WIDTH        = 700
-    private val PREFERRED_HEIGHT       = 300
+    private val PREFERRED_WIDTH  = 700
+    private val PREFERRED_HEIGHT = 300
+    private val REFRESH_RATE     = 100
+
     private val chopperImages          = ChopperImages.imageList
     private val sceneVelocity          = Velocity(-2, 0, 1)
     private val initialChopperVelocity = Velocity(0, 0)
@@ -49,26 +51,18 @@ class RollingScenePanel extends JPanel with Runnable {
         animator.start()
     }
 
-    override def run(): Unit = mainGameLoop
+    override def run(): Unit = gameLoop
 
-    private def mainGameLoop: Unit = {
-
-        var beforeTime = System.currentTimeMillis()
-
+    private def gameLoop: Unit =
         do {
-
             repaint()
-
-            sleep(beforeTime)
-
-            beforeTime = System.currentTimeMillis()
-
+            sleep(REFRESH_RATE)
         } while (true)
-    }
 
-    private def sleep(beforeTime: Long) {
+
+    private def sleep(sleepTime: Int) {
         try {
-            Thread.sleep(100)
+            Thread.sleep(sleepTime)
         } catch {
             case e: InterruptedException => println("Interrupted: " + e.getMessage())
         }
