@@ -33,7 +33,7 @@ class HillsTest extends FunSuite {
     }
 
     test("given columns when not enough columns on screen then call to removeOldestBar does nothing") {
-        val velocity         = ColumnVelocity() // moves 1 pix in one time unit not enough to move it off screen
+        val velocity         = Velocity(-1,0) // moves 1 pix in one time unit not enough to move it off screen
         val veryNarrowScreen = DisplayWindow(2, 100)
         val narrowCoverage  = RollingSceneCoverage(veryNarrowScreen)
 
@@ -43,7 +43,7 @@ class HillsTest extends FunSuite {
     }
 
     test("given columns then calling add will add more columns if required") {
-        val velocity        = ColumnVelocity(-4,0,1) // moves 4 pix in one time unit
+        val velocity        = Velocity(-4,0,1) // moves 4 pix in one time unit
 
         val columns = Hills(Queue.empty, coverage, velocity).add.move.add.move.add
 

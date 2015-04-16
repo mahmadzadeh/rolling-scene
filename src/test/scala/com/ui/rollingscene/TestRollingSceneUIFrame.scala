@@ -15,7 +15,7 @@ class TestRollingSceneUIFrame extends JFrame {
     pack()
 
     private def initAllComponents: Unit = {
-        val panel = new TestRollingSceneUIPanel(new Chopper(new Point(10,10), ChopperVelocity(0,0), chopperImages))
+        val panel = new TestRollingSceneUIPanel(new Chopper(new Point(10,10), Velocity(0,0), chopperImages))
 
         val layout: GroupLayout = new GroupLayout(getContentPane)
 

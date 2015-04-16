@@ -3,16 +3,18 @@ package com.ui.rollingscene
 import java.awt.Graphics
 
 
-case class RollingScene(verticalBars: Hills, chopper:Chopper) {
+case class RollingScene(hills: Hills, chopper:Chopper) {
 
     def refresh:RollingScene = {
-        new RollingScene(verticalBars.move.add, chopper.move)
+        new RollingScene(hills.move.add, chopper.move)
     }
 
     def draw(g:Graphics):Unit = {
-        Stars.shiningStars(verticalBars.sceneCoverage.displayWindow).foreach(_.draw(g))
-        verticalBars.draw(g)
+        Stars.shiningStars(hills.sceneCoverage.displayWindow).foreach(_.draw(g))
+        hills.draw(g)
         chopper.draw(g)
     }
+
+    def increaseSpeedInX:RollingScene = RollingScene(hills, chopper.increaseSpeedInX)
 
 }

@@ -5,7 +5,7 @@ import java.awt.{Point, Graphics}
 
 case class Hills(colQueue: Queue[HillColumn] = Queue.empty,
                  sceneCoverage: RollingSceneCoverage,
-                 velocity: Velocity = ColumnVelocity()) {
+                 velocity: Velocity = Velocity(-1,0 )) {
 
     /**
      * adds enough bars to fill the screen on the left side of the screen

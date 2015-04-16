@@ -15,9 +15,11 @@ class RollingScenePanel extends JPanel  with Runnable with ActionListener {
     private[this] var animator: Thread = _
     private[this] var rollingScene: RollingScene= _
 
-    private val PREFERRED_WIDTH : Int = 700
-    private val PREFERRED_HEIGHT: Int = 300
+    private val PREFERRED_WIDTH       = 700
+    private val PREFERRED_HEIGHT      = 300
     private val chopperImages         = ChopperImages.imageList
+    private val sceneVelocity         = Velocity(-2, 0, 1)
+    private val initialChopperVelocity= Velocity(0, 0)
 
     setPanelAttributes
 
@@ -26,13 +28,13 @@ class RollingScenePanel extends JPanel  with Runnable with ActionListener {
     override def paintComponent(g: Graphics): Unit = {
         super.paintComponent(g)
 
-        val display = DisplayWindow(getWidth, getHeight)
 
+        val display = DisplayWindow(getWidth, getHeight)
         if(rollingScene == null) {
 
             val sceneCoverage = RollingSceneCoverage(display,100)
-            rollingScene = RollingScene(Hills(Queue.empty, sceneCoverage,ColumnVelocity(-2,0,1)),
-                                        new Chopper(new Point(75,100), ChopperVelocity(0,0), chopperImages)).refresh
+            rollingScene = RollingScene(Hills(Queue.empty, sceneCoverage, sceneVelocity),
+                                        new Chopper(new Point(75,100), initialChopperVelocity, chopperImages)).refresh
         } else {
             rollingScene = rollingScene.refresh
         }

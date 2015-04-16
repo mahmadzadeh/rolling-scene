@@ -3,7 +3,7 @@ package com.ui.rollingscene
 import java.awt.{Rectangle, Graphics, Point}
 import java.awt.image.BufferedImage
 
-case class Chopper(topLeft:Point, velocity:ChopperVelocity, chopperImages: Seq[BufferedImage] ) {
+case class Chopper(topLeft:Point, velocity:Velocity, chopperImages: Seq[BufferedImage] ) {
     def newLocation: Point =
         new Point(velocity.x1(topLeft.x), velocity.y1(topLeft.y))
 

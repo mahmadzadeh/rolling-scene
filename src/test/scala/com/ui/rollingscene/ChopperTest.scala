@@ -5,7 +5,7 @@ import java.awt.Point
 
 class ChopperTest extends FunSuite  {
 
-    val chopperVelocity = ChopperVelocity(1, 1)
+    val chopperVelocity = Velocity(1, 1)
     val point           = new Point
     val imageCache      = new ImageCache
     val images          = List(imageCache.load("/cobra_0.jpg").get, imageCache.load("/cobra_1.jpg").get)
@@ -47,7 +47,7 @@ class ChopperTest extends FunSuite  {
 
     test("given a chopper with velocity of 0 then call to move will not really move the chopper") {
 
-        val myChopper = new Chopper(point, ChopperVelocity(0,0), images)
+        val myChopper = new Chopper(point, Velocity(0,0), images)
 
         assert(point === myChopper.move.topLeft)
     }
