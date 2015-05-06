@@ -7,9 +7,9 @@ case class Chopper(topLeft:Point, velocity:Velocity, chopperImages: Seq[Buffered
 
     def newLocation: Point = {
         val possibleNewLocation = new Point(velocity.x1(topLeft.x), velocity.y1(topLeft.y))
-        val rectangle           = new Rectangle(0, 0, displayWindow.w - boundingBox.width, displayWindow.h)
+        val visibleArea         = new Rectangle(0, 0, displayWindow.w - boundingBox.width, displayWindow.h - boundingBox.height)
 
-        if(isInsideVisibleWindow(possibleNewLocation, rectangle))
+        if(isInsideVisibleWindow(possibleNewLocation, visibleArea))
             possibleNewLocation
         else
             topLeft
