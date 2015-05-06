@@ -3,7 +3,7 @@
 
 Implements an infinite scroll scene with a helicopter moving over hills and valleys.
 
-Hills and valleys generated randomly.
+Hills and valleys are generated randomly.
 
 Stars in the background are also generated randomly (location and color)
 
