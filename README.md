@@ -1,7 +1,7 @@
 # rolling-scene
 ----------------
 
-Implements an infinite scroll scene with a a chopper moving over hills and valleys.
+Implements an infinite scroll scene with a helicopter moving over hills and valleys.
 
 Hills and valleys generated randomly.
 
