@@ -2,7 +2,6 @@ package com.ui.rollingscene
 
 import java.awt.Point
 
-
 case class Velocity(velX: Int, velY: Int, deltaT: Int = 1) {
 
     def x1(x0:Int):Int = calculateNewPosition(velX, x0)

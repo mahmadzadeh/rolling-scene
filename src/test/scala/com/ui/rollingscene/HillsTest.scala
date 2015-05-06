@@ -1,12 +1,13 @@
 package com.ui.rollingscene
 
 import org.scalatest.FunSuite
+
 import scala.collection.immutable.Queue
 
 
 class HillsTest extends FunSuite {
     val displayWindow = DisplayWindow(200, 100)
-    val coverage      = RollingSceneCoverage(displayWindow)
+    val coverage      = ScreenCoverage(displayWindow)
 
     test("can create an empty columns") {
         Hills(Queue.empty,coverage)
@@ -35,7 +36,7 @@ class HillsTest extends FunSuite {
     test("given columns when not enough columns on screen then call to removeOldestBar does nothing") {
         val velocity         = Velocity(-1,0) // moves 1 pix in one time unit not enough to move it off screen
         val veryNarrowScreen = DisplayWindow(2, 100)
-        val narrowCoverage  = RollingSceneCoverage(veryNarrowScreen)
+        val narrowCoverage  = ScreenCoverage(veryNarrowScreen)
 
         val columns = Hills(Queue.empty, narrowCoverage, velocity).add.move
 

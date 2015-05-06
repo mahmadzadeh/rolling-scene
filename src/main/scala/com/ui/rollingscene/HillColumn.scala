@@ -15,7 +15,7 @@ case class HillColumn(topLeft:Point, rectangles: Seq[DisplayRectangle]) {
 
     def draw(g:Graphics) = rectangles.foreach(_.draw(g))
 
-    def move(rollingScene:RollingSceneCoverage, velocityCalc:Velocity):HillColumn   = {
+    def move(rollingScene:ScreenCoverage, velocityCalc:Velocity):HillColumn   = {
         val newLocation = new Point(velocityCalc.x1(topLeft.x), velocityCalc.y1(topLeft.y))
 
         HillColumn(newLocation, rectangles.map(_.moveTo(newLocation)))

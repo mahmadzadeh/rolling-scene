@@ -1,14 +1,12 @@
 package com.ui.panel
 
-import javax.swing.JPanel
-import com.ui.rollingscene._
-import java.awt.{Point, Color, Graphics}
-import com.ui.rollingscene.Hills
-import com.ui.rollingscene.DisplayWindow
-import com.ui.rollingscene.RollingScene
-import com.ui.rollingscene.RollingSceneCoverage
-import scala.collection.immutable.Queue
 import java.awt.event.{KeyAdapter, KeyEvent}
+import java.awt.{Color, Graphics, Point}
+import javax.swing.JPanel
+
+import com.ui.rollingscene.{DisplayWindow, Hills, RollingScene, ScreenCoverage, _}
+
+import scala.collection.immutable.Queue
 
 class RollingScenePanel extends JPanel with Runnable {
 
@@ -22,9 +20,9 @@ class RollingScenePanel extends JPanel with Runnable {
     private val chopperImages          = ChopperImages.imageList
     private val sceneVelocity          = Velocity(-2, 0, 1)
     private val initialChopperVelocity = Velocity(0, 0)
+    private val initialChopperPosition: Point = new Point(75, 100)
 
     setPanelAttributes
-
     repaint()
 
     override def paintComponent(g: Graphics): Unit = {
@@ -34,9 +32,10 @@ class RollingScenePanel extends JPanel with Runnable {
 
         if (rollingScene == null) {
 
-            val sceneCoverage = RollingSceneCoverage(display, 100)
+            val sceneCoverage = ScreenCoverage(display, 100)
+
             rollingScene = RollingScene(Hills(Queue.empty, sceneCoverage, sceneVelocity),
-                new Chopper(new Point(75, 100), initialChopperVelocity, chopperImages)).refresh
+                new Chopper(initialChopperPosition, initialChopperVelocity, chopperImages,display)).refresh
         } else {
             rollingScene = rollingScene.refresh
         }

@@ -2,16 +2,20 @@ package com.ui.rollingscene
 
 import java.awt.Point
 
-case class RollingSceneCoverage(displayWindow: DisplayWindow, coverage: Int = 75) {
+case class ScreenCoverage(displayWindow: DisplayWindow, coverage: Int = 75) {
 
     def verticalPixelCountForCoverage: Int =
         ((coverage / 100.0) * displayWindow.h).toInt
 
     def horizontalBarCount: Int = {
-        ((displayWindow.w.toDouble) / ColumnFactory.COL_WIDTH).toInt
+        ((displayWindow.w.toDouble) / VerticalColumnFactory.COL_WIDTH).toInt
     }
 
-    def firstBar: Point = {
+    /**
+     * top left corner of a the very first column that gets printed on the screen
+     * as the scene moves from L <- R
+     */
+    def firstColumnTopLeft: Point = {
         val x = displayWindow.w
         // from total screen h pixelCountForCoverage pixels will be covered the rest is uncovered screen
         val uncoveredPixels = displayWindow.h - verticalPixelCountForCoverage

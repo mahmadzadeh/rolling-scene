@@ -3,7 +3,7 @@ package com.ui.rollingscene
 import com.util.random.Random2DPoint
 
 object Stars {
-    val STAR_COUNT = 100
+    val STAR_COUNT = 500
     val STAR_CLUSTER_COUNT = 3
 
     private var starClusters:Seq[Seq[Star]]= Nil

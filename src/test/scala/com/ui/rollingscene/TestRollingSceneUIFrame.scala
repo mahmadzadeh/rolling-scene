@@ -1,8 +1,9 @@
 package com.ui.rollingscene
 
-import javax.swing.{JFrame, JPanel}
-import org.jdesktop.layout.GroupLayout
 import java.awt.{Color, Graphics, Point}
+import javax.swing.{JFrame, JPanel}
+
+import org.jdesktop.layout.GroupLayout
 
 class TestRollingSceneUIFrame extends JFrame {
     private val chopperImages    = ChopperImages.imageList
@@ -15,7 +16,7 @@ class TestRollingSceneUIFrame extends JFrame {
     pack()
 
     private def initAllComponents: Unit = {
-        val panel = new TestRollingSceneUIPanel(new Chopper(new Point(10,10), Velocity(0,0), chopperImages))
+        val panel = new TestRollingSceneUIPanel(new Chopper(new Point(10,10), Velocity(0,0), chopperImages, new DisplayWindow(100,100)))
 
         val layout: GroupLayout = new GroupLayout(getContentPane)
 

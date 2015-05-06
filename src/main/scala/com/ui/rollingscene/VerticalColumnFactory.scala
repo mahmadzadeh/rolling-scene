@@ -1,16 +1,24 @@
 package com.ui.rollingscene
 
-import com.ui.rollingscene.DisplayRectangle._
 import java.awt.Point
 
+import com.ui.rollingscene.DisplayRectangle._
 
-object ColumnFactory {
+
+/**
+ * Represents a single vertical column of a rolling hill
+ * #     ##
+ * ## #  ###
+ * ##### #####
+ * ############
+ */
+object VerticalColumnFactory {
     val COL_WIDTH                 = DEFAULT_ELEMENT_WIDTH
     val COL_SINGLE_ELEMENT_HEIGHT = DEFAULT_ELEMENT_HEIGHT
 
-    def create(topLeft: Point, coverage: RollingSceneCoverage): HillColumn = {
+    def create(topLeft: Point, coverage: ScreenCoverage): HillColumn = {
 
-        val colTop = RollingRange.getNextRandomPoint(coverage.displayWindow)
+        val colTop = HillHeight.nextRandomPointOnHill(coverage.displayWindow)
 
         val rectangles = getRangeRequiredForHill(coverage.displayWindow.h, colTop) map {
             y:Int  =>
@@ -20,7 +28,7 @@ object ColumnFactory {
         HillColumn(topLeft, rectangles)
     }
 
-    def fillScreen(point: Point, coverage: RollingSceneCoverage): Seq[HillColumn] = {
+    def fillScreen(point: Point, coverage: ScreenCoverage): Seq[HillColumn] = {
         def createOneColumn(acc:Seq[HillColumn], i:Int): Seq[HillColumn] = {
             if( i >= 1 ){
                 val fromPoint = if(acc.isEmpty) point else acc.last.nextColumnToRight
@@ -33,7 +41,7 @@ object ColumnFactory {
         createOneColumn(Seq[HillColumn](), colsRequiredForCoverageHorizontally(point,coverage))
     }
 
-    def colsRequiredForCoverageHorizontally(fromPoint:Point, sceneCoverage:RollingSceneCoverage):Int = {
+    def colsRequiredForCoverageHorizontally(fromPoint:Point, sceneCoverage:ScreenCoverage):Int = {
         val uncovered= sceneCoverage.displayWindow.w - fromPoint.x
 
         if(uncovered <= 0 ) 0 else (uncovered.toDouble / COL_WIDTH).toInt
