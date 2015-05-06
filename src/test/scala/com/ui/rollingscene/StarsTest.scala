@@ -12,7 +12,7 @@ class StarsTest extends FunSuite {
         assert(shiningStars.size == Stars.STAR_COUNT )
     }
 
-    test("given stars then calling get shining stars multiple times always will always return stars") {
+    test("given stars then calling get shining stars multiple times will always return stars") {
         0 to 10 foreach { i=>
             assert(Stars.STAR_COUNT == Stars.shiningStars(displayWindow).size)
         }
