@@ -8,8 +8,7 @@ Hills and valleys are generated randomly.
 Stars in the background are also generated randomly (location and color)
 
 
-![](https://github.com/mahmadzadeh/rolling-scene/tree/master/src/main/resources/sample/rollingImage.png)
-
+[sample image!](./src/main/resources/sample/rollingImage.png)
 
 ### Required software
 
